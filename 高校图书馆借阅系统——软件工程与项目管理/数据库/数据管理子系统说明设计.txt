@@ -1,0 +1,120 @@
+本系统的数据管理子系统负责对高校图书馆借阅业务中的核心数据进行持久化存储、完整性约束维护、事务一致性控制、权限控制与高频查询支持。数据管理子系统与上层业务服务（BorrowService/FineService/AuthService 等）配合，保证“借书—还书—逾期—罚款—缴费—解除限制”的业务闭环可追溯、可审计、可并发安全执行。
+一、数据库表结构（核心表 + 关键字段）
+为匹配陈氏 ER 图与类图，采用“书目—馆藏副本—借阅记录—罚款—缴费”链路建模，并对用户统一账户管理。
+1）用户表 user
+主键：user_id（PK）
+唯一约束：login_id（学号/工号/账号，UNIQUE）
+主要字段：
+name、password_hash、role（READER/ADMIN）、status（ACTIVE/DISABLED）、created_at
+用途：登录鉴权、权限控制、管理员重置读者密码、查询个人信息
+> 可选扩展：如需区分读者类型/借阅上限，可加 reader_type、max_borrow_limit 字段或单独建 reader_profile(user_id PK/FK, ...)。
+2）书目表 book_title
+主键：book_id（PK）
+唯一约束：isbn（UNIQUE）
+主要字段：title、author、publisher、category
+用途：图书信息维护与检索
+3）馆藏副本表 book_copy
+主键：copy_id（PK，条码/馆藏编号）
+外键：book_id → book_title(book_id)（FK）
+主要字段：status（AVAILABLE/BORROWED/MAINTENANCE/REMOVED）、location
+用途：库存/可借性判断，借还时更新副本状态
+4）借阅记录表 loan
+主键：loan_id（PK）
+外键：reader_id → user(user_id)（FK，仅 role=READER 的用户）
+外键：copy_id → book_copy(copy_id)（FK）
+主要字段：borrowed_at、due_at、returned_at（可空）、status（BORROWED/RETURNED/OVERDUE/CLOSED）
+用途：当前/历史借阅查询，还书与逾期判定依据
+5）罚款表 fine
+主键：fine_id（PK）
+外键：loan_id → loan(loan_id)（FK）
+主要字段：amount、created_at、status（UNPAID/PAID）、reason（OVERDUE）
+用途：记录逾期罚款、限制借书（未缴罚款时）
+6）缴费表 payment
+主键：payment_id（PK）
+外键：fine_id → fine(fine_id)（FK）
+主要字段：amount、paid_at、method（现金/校园卡/线上等）
+用途：缴费流水记录；缴清后更新罚款状态以解除借书限制
+二、核心事务设计（保证一致性与并发安全）
+系统中涉及状态变更的操作必须以事务（Transaction）执行，避免并发导致“一册多借”“还书未生成罚款”“缴费未解除限制”等问题。
+1）借书事务 borrowBook(reader_id, copy_id)
+事务目标：在满足借阅条件时创建借阅记录并将副本置为“已借出”。
+前置校验（同一事务内完成）：
+校验读者账户状态：user.status=ACTIVE 且 role=READER
+校验限制条件：存在 fine.status='UNPAID' 或存在逾期未还 loan(returned_at IS NULL AND now > due_at) → 拒绝借书
+校验副本状态：book_copy.status='AVAILABLE'，否则 无库存/不可借
+事务步骤（建议采用行锁/悲观锁）：
+SELECT ... FOR UPDATE 锁定 book_copy(copy_id)（防并发）
+再次确认 book_copy.status='AVAILABLE'
+插入 loan(reader_id, copy_id, borrowed_at, due_at, status='BORROWED')
+更新 book_copy.status='BORROWED'
+提交事务，返回 due_at
+并发约束：同一 copy_id 同时只能存在一条未归还 loan（详见“约束与索引”）。
+2）还书事务 returnBook(reader_id, copy_id)
+事务目标：归还副本、更新借阅记录；若逾期则生成罚款。
+事务步骤：
+查询并锁定该副本的“未归还借阅”：
+SELECT loan WHERE copy_id=? AND returned_at IS NULL FOR UPDATE
+更新 loan.returned_at=now，并根据 now > due_at 更新 loan.status（RETURNED/OVERDUE）
+更新 book_copy.status='AVAILABLE'
+若 now > due_at：插入 fine(loan_id, amount, status='UNPAID', reason='OVERDUE')
+提交事务，返回“是否逾期/罚款金额”
+3）缴费事务 payFine(reader_id, fine_id, amount)
+事务目标：记录缴费流水并将罚款置为已缴，从而解除借书限制。
+事务步骤：
+SELECT fine WHERE fine_id=? FOR UPDATE 锁定罚款记录
+校验 fine.status='UNPAID'；若已缴/不存在则拒绝
+插入 payment(fine_id, amount, paid_at, method)
+更新 fine.status='PAID'（如允许分次缴费，可在判断“累计已缴 >= fine.amount”后再置 PAID）
+提交事务；借书限制自动解除（后续借书校验 UNPAID 即可）
+4）管理员重置读者密码 resetReaderPassword(admin_id, reader_id)
+事务目标：管理员安全地重置读者密码。
+步骤：
+校验 admin.role='ADMIN'
+更新 user.password_hash（可设置临时密码/初始密码）
+3.（可选加分）写入 password_reset_log(admin_id, reader_id, reset_at) 便于审计
+三、权限控制（数据层与业务层一致）
+读者（READER）：
+允许：查询书籍信息、查询个人信息、查询个人当前/历史借阅、查询个人罚款、借书/还书/缴费
+限制：只能访问本人相关的 loan/fine/payment 数据（where reader_id = currentUser）
+管理员（ADMIN）：
+允许：维护图书（book_title/book_copy 的增删改查）、维护读者（user 的增删改查/禁用）、重置读者密码、查询任意读者借阅情况、查询全局超期信息
+实现方式：
+应用层 RBAC（基于 user.role）
+查询接口强制携带 reader_id 条件（防越权）
+对管理员接口记录日志（可选加分）
+四、典型查询（支持用例的高频查询）
+读者查询当前借阅：
+SELECT * FROM loan WHERE reader_id=? AND returned_at IS NULL ORDER BY borrowed_at DESC;
+读者查询历史借阅：
+SELECT * FROM loan WHERE reader_id=? ORDER BY borrowed_at DESC;
+读者查询未缴罚款：
+SELECT * FROM fine WHERE loan_id IN (SELECT loan_id FROM loan WHERE reader_id=?) AND status='UNPAID';
+管理员查询某读者借阅情况：
+SELECT * FROM loan WHERE reader_id=? ORDER BY borrowed_at DESC;
+管理员查询超期信息：
+SELECT * FROM loan WHERE returned_at IS NULL AND NOW() > due_at;
+书目检索：
+SELECT * FROM book_title WHERE title LIKE ? OR author LIKE ?;
+计算可借库存：
+SELECT COUNT(*) FROM book_copy WHERE book_id=? AND status='AVAILABLE';
+五、约束与索引（保证正确性与性能）
+1）关键约束（业务规则落地）
+唯一性：
+user.login_id 唯一
+book_title.isbn 唯一
+借阅并发约束（同一副本同一时刻只能借出一次）：
+逻辑约束：同一 copy_id 不允许存在两条 returned_at IS NULL 的 loan
+实现方式：事务中 SELECT ... FOR UPDATE 锁定副本 + 校验；或数据库支持时使用“部分唯一索引”
+罚款约束：
+一条 loan 最多对应一条 fine（逾期罚款），可用 fine.loan_id UNIQUE 实现
+删除策略（建议写入报告）：
+书目/副本/用户原则上不物理删除，采用 status 或 is_deleted 逻辑删除，保证历史借阅可追溯
+2）推荐索引（按查询与事务热点）
+loan(reader_id, returned_at)：支持当前借阅/历史借阅
+loan(copy_id, returned_at)：支持按副本找未归还记录（还书/并发校验）
+loan(due_at, returned_at)：支持超期查询
+fine(loan_id) 唯一索引（保证 1 loan ≤ 1 fine）
+fine(status) 或 fine(status, loan_id)：支持未缴罚款查询
+book_copy(book_id, status)：支持可借库存统计
+user(login_id) 唯一索引：支持登录
+以上设计保证了：管理员与读者的 CRUD/查询需求可在数据库层得到有效支撑；借书、还书、缴费等关键流程在事务与约束控制下具备一致性与并发安全；逾期罚款与“未缴费不可继续借书”的业务规则可通过数据状态与查询条件自然实现。
