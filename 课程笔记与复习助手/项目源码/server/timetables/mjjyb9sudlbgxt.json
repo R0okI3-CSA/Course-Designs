@@ -1,0 +1,44 @@
+{
+  "shareId": "mjjyb9sudlbgxt",
+  "createdAt": 1766576964702,
+  "timetable": {
+    "planTitle": "计划1",
+    "cells": [
+      {
+        "rowIndex": 0,
+        "colIndex": 2,
+        "title": "安卓",
+        "location": "工科二",
+        "content": ""
+      },
+      {
+        "rowIndex": 1,
+        "colIndex": 2,
+        "title": "安卓",
+        "location": "工科二",
+        "content": ""
+      },
+      {
+        "rowIndex": 3,
+        "colIndex": 4,
+        "title": "安卓",
+        "location": "工科二",
+        "content": ""
+      },
+      {
+        "rowIndex": 4,
+        "colIndex": 4,
+        "title": "安卓",
+        "location": "工科二",
+        "content": ""
+      },
+      {
+        "rowIndex": 6,
+        "colIndex": 0,
+        "title": "头",
+        "location": "",
+        "content": ""
+      }
+    ]
+  }
+}

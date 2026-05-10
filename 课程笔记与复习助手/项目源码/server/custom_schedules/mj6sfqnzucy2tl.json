@@ -1,0 +1,32 @@
+{
+  "shareId": "mj6sfqnzucy2tl",
+  "createdAt": 1765781035199,
+  "customSchedule": {
+    "planTitle": "计划2",
+    "startDayEpoch": 20437,
+    "endDayEpoch": 20439,
+    "events": [
+      {
+        "dateEpochDay": 20437,
+        "startMinutes": 884,
+        "endMinutes": 1020,
+        "title": "联动测试",
+        "content": ""
+      },
+      {
+        "dateEpochDay": 20438,
+        "startMinutes": 540,
+        "endMinutes": 870,
+        "title": "英语六级",
+        "content": ""
+      },
+      {
+        "dateEpochDay": 20439,
+        "startMinutes": 960,
+        "endMinutes": 1226,
+        "title": "软件工程",
+        "content": ""
+      }
+    ]
+  }
+}

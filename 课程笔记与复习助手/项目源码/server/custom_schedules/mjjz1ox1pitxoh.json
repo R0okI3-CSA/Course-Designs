@@ -1,0 +1,25 @@
+{
+  "shareId": "mjjz1ox1pitxoh",
+  "createdAt": 1766578197349,
+  "customSchedule": {
+    "planTitle": "透明",
+    "startDayEpoch": 20446,
+    "endDayEpoch": 20448,
+    "events": [
+      {
+        "dateEpochDay": 20446,
+        "startMinutes": 1210,
+        "endMinutes": 1260,
+        "title": "测试",
+        "content": "记录"
+      },
+      {
+        "dateEpochDay": 20448,
+        "startMinutes": 540,
+        "endMinutes": 1050,
+        "title": "头",
+        "content": "啦啦啦"
+      }
+    ]
+  }
+}

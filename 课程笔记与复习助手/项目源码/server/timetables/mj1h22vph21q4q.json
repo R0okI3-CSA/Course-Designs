@@ -1,0 +1,65 @@
+{
+  "shareId": "mj1h22vph21q4q",
+  "createdAt": 1765459591189,
+  "timetable": {
+    "planTitle": "1",
+    "cells": [
+      {
+        "rowIndex": 0,
+        "colIndex": 1,
+        "title": "工程伦理",
+        "location": "",
+        "content": ""
+      },
+      {
+        "rowIndex": 1,
+        "colIndex": 0,
+        "title": "python",
+        "location": "",
+        "content": ""
+      },
+      {
+        "rowIndex": 1,
+        "colIndex": 1,
+        "title": "工程伦理",
+        "location": "",
+        "content": ""
+      },
+      {
+        "rowIndex": 2,
+        "colIndex": 0,
+        "title": "python",
+        "location": "",
+        "content": ""
+      },
+      {
+        "rowIndex": 2,
+        "colIndex": 4,
+        "title": "微机原理",
+        "location": "",
+        "content": ""
+      },
+      {
+        "rowIndex": 3,
+        "colIndex": 4,
+        "title": "微机原理",
+        "location": "",
+        "content": ""
+      },
+      {
+        "rowIndex": 4,
+        "colIndex": 1,
+        "title": "微机原理",
+        "location": "",
+        "content": ""
+      },
+      {
+        "rowIndex": 5,
+        "colIndex": 1,
+        "title": "微机原理",
+        "location": "",
+        "content": ""
+      }
+    ]
+  }
+}

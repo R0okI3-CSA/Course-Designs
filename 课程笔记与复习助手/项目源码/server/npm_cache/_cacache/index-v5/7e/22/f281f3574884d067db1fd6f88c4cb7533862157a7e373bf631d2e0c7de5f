@@ -1,0 +1,2 @@
+
+9c71551d16dab9156a1fa36fd45d29c7f062d4d0	{"key":"make-fetch-happen:request-cache:https://registry.npm.taobao.org/etag","integrity":null,"time":1764338515478,"size":"262","metadata":{"time":1764338515478,"url":"https://registry.npm.taobao.org/etag","reqHeaders":{"accept":"application/json"},"resHeaders":{"content-type":"text/html","date":"Fri, 28 Nov 2025 14:01:55 GMT","location":"https://registry.npmmirror.com/etag"},"options":{"compress":true},"status":301}}

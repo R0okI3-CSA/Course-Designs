@@ -1,0 +1,30 @@
+{
+  "className": "计算机232",
+  "plans": [
+    {
+      "id": "mjjzb2d6ii5o2j",
+      "createdAt": 1766578634682,
+      "customSchedule": {
+        "planTitle": "是擦",
+        "startDayEpoch": 20446,
+        "endDayEpoch": 20448,
+        "events": [
+          {
+            "dateEpochDay": 20446,
+            "startMinutes": 600,
+            "endMinutes": 1260,
+            "title": "1324",
+            "content": "131213"
+          },
+          {
+            "dateEpochDay": 20448,
+            "startMinutes": 780,
+            "endMinutes": 1140,
+            "title": "1324",
+            "content": "收费方式"
+          }
+        ]
+      }
+    }
+  ]
+}

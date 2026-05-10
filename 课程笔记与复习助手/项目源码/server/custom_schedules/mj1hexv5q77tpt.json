@@ -1,0 +1,32 @@
+{
+  "shareId": "mj1hexv5q77tpt",
+  "createdAt": 1765460191217,
+  "customSchedule": {
+    "planTitle": "1",
+    "startDayEpoch": 20433,
+    "endDayEpoch": 20440,
+    "events": [
+      {
+        "dateEpochDay": 20433,
+        "startMinutes": 630,
+        "endMinutes": 1140,
+        "title": "软件工程",
+        "content": ""
+      },
+      {
+        "dateEpochDay": 20434,
+        "startMinutes": 660,
+        "endMinutes": 1290,
+        "title": "安卓开发",
+        "content": ""
+      },
+      {
+        "dateEpochDay": 20436,
+        "startMinutes": 870,
+        "endMinutes": 1080,
+        "title": "操作系统",
+        "content": ""
+      }
+    ]
+  }
+}

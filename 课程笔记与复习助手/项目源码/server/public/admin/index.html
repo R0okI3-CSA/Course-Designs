@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CourseReviewPlanner - 云服务器管理面板</title>
+    <link rel="stylesheet" href="/admin/assets/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="title">
+        <div class="app-name">CourseReviewPlanner</div>
+        <div class="sub">本地云服务器管理面板</div>
+      </div>
+      <div class="actions">
+        <button id="btnRefresh" class="btn primary">刷新</button>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="grid">
+        <div class="card">
+          <div class="card-title">健康检查</div>
+          <div id="healthStatus" class="kpi">—</div>
+          <div class="hint" id="healthHint">/api/admin/health</div>
+        </div>
+        <div class="card">
+          <div class="card-title">服务器运行时间</div>
+          <div id="uptime" class="kpi">—</div>
+          <div class="hint">process.uptime()</div>
+        </div>
+        <div class="card">
+          <div class="card-title">用户备份数量</div>
+          <div id="backupUsers" class="kpi">—</div>
+          <div class="hint">backups/{userId}.json</div>
+        </div>
+        <div class="card">
+          <div class="card-title">备份目录占用</div>
+          <div id="backupSize" class="kpi">—</div>
+          <div class="hint" id="backupDir">—</div>
+        </div>
+        <div class="card">
+          <div class="card-title">短信验证码缓存</div>
+          <div id="smsCount" class="kpi">—</div>
+          <div class="hint">smsStore（已自动清理过期）</div>
+        </div>
+        <div class="card">
+          <div class="card-title">最新生成验证码（调试）</div>
+          <div id="latestSmsCode" class="kpi">—</div>
+          <div class="hint" id="latestSmsHint">/api/admin/sms/latest</div>
+        </div>
+      </section>
+
+      <section class="split">
+        <div class="card">
+          <div class="card-title">发布学习计划到班级（支持多个事件）</div>
+          <div class="card-body">
+            <div class="form">
+              <label class="label">班级名称</label>
+              <input id="pubClassName" class="input" placeholder="例如：计科2301" />
+
+              <label class="label">计划标题</label>
+              <input id="pubPlanTitle" class="input" placeholder="例如：第14周复习安排" />
+
+              <div class="row actions-row">
+                <button id="btnAddEvent" class="btn">新增事件</button>
+                <div class="hint">可添加多条事件；会自动计算日期范围并同步到学生端。</div>
+              </div>
+
+              <div id="eventsContainer" class="events"></div>
+
+              <div class="row actions-row">
+                <button id="btnPublish" class="btn primary">发布到班级</button>
+                <div id="pubMsg" class="hint"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">班级发布计划（最近）</div>
+          <div class="card-body">
+            <table class="table" id="classPlanTable">
+              <thead>
+                <tr>
+                  <th>时间</th>
+                  <th>班级</th>
+                  <th>计划标题</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+            <div class="hint">仅用于面板展示；学生端会按加入的班级自动拉取。</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="split">
+        <div class="card">
+          <div class="card-title">备份列表（最近更新优先）</div>
+          <div class="card-body">
+            <table class="table" id="backupTable">
+              <thead>
+                <tr>
+                  <th>userId</th>
+                  <th>大小</th>
+                  <th>更新时间</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">最近请求日志（简版）</div>
+          <div class="card-body">
+            <table class="table" id="reqTable">
+              <thead>
+                <tr>
+                  <th>时间</th>
+                  <th>方法</th>
+                  <th>路径</th>
+                  <th>状态</th>
+                  <th>耗时</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+            <div class="hint">只保留最近 200 条，静态资源默认过滤。</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="split">
+        <div class="card">
+          <div class="card-title">短信验证码明细（可选）</div>
+          <div class="card-body">
+            <table class="table" id="smsTable">
+              <thead>
+                <tr>
+                  <th>手机号（脱敏）</th>
+                  <th>剩余有效期</th>
+                  <th>过期时间</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">说明</div>
+          <div class="card-body">
+            <div class="hint">
+              如需简单保护面板：在启动服务器时设置环境变量 <code>ADMIN_TOKEN</code>。
+              之后访问接口需携带 <code>x-admin-token</code> 或 <code>?token=</code>。
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="/admin/assets/app.js"></script>
+  </body>
+</html>
+
+

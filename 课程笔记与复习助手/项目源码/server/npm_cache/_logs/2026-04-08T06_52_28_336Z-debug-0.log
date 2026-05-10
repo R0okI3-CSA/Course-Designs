@@ -1,0 +1,22 @@
+0 verbose cli D:\Nodejs\node.exe D:\Nodejs\node_modules\npm\bin\npm-cli.js
+1 info using npm@10.9.2
+2 info using node@v22.15.1
+3 silly config load:file:D:\Nodejs\node_modules\npm\npmrc
+4 silly config load:file:E:\PROGRAM\计算机视觉\实验\.npmrc
+5 silly config load:file:C:\Users\xupan\.npmrc
+6 silly config load:file:D:\Nodejs\node-v11.0.0-win-x64\node_global\etc\npmrc
+7 verbose title npm search @web-types
+8 verbose argv "search" "--json" "@web-types"
+9 verbose logfile logs-max:10 dir:E:\PROGRAM\Android\CourseReviewPlanner\server\npm_cache\_logs\2026-04-08T06_52_28_336Z-
+10 verbose logfile E:\PROGRAM\Android\CourseReviewPlanner\server\npm_cache\_logs\2026-04-08T06_52_28_336Z-debug-0.log
+11 silly logfile start cleaning logs, removing 2 files
+12 silly search searching packages
+13 silly logfile done cleaning log files
+14 http fetch GET 200 https://registry.npmmirror.com/-/v1/search?text=%40web-types&size=20&from=0&quality=0.65&popularity=0.98&maintenance=0.5 1982ms (cache updated)
+15 silly search search completed
+16 verbose cwd E:\PROGRAM\计算机视觉\实验
+17 verbose os Windows_NT 10.0.22621
+18 verbose node v22.15.1
+19 verbose npm  v10.9.2
+20 verbose exit 0
+21 info ok

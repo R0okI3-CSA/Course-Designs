@@ -1,0 +1,66 @@
+{
+  "className": "计算机234",
+  "plans": [
+    {
+      "id": "mjjxhn8h802myk",
+      "createdAt": 1766575582433,
+      "customSchedule": {
+        "planTitle": "第1周计划",
+        "startDayEpoch": 20446,
+        "endDayEpoch": 20446,
+        "events": [
+          {
+            "dateEpochDay": 20446,
+            "startMinutes": 1200,
+            "endMinutes": 1260,
+            "title": "高数期末",
+            "content": "高等数学考试"
+          }
+        ]
+      }
+    },
+    {
+      "id": "mjjxrskwg9961q",
+      "createdAt": 1766576055920,
+      "customSchedule": {
+        "planTitle": "测试",
+        "startDayEpoch": 20446,
+        "endDayEpoch": 20447,
+        "events": [
+          {
+            "dateEpochDay": 20446,
+            "startMinutes": 960,
+            "endMinutes": 1260,
+            "title": "高数复习",
+            "content": "强强强强"
+          },
+          {
+            "dateEpochDay": 20447,
+            "startMinutes": 1200,
+            "endMinutes": 1260,
+            "title": "测试",
+            "content": "22222"
+          }
+        ]
+      }
+    },
+    {
+      "id": "mjk276ljfxllnl",
+      "createdAt": 1766583492391,
+      "customSchedule": {
+        "planTitle": "顺德区",
+        "startDayEpoch": 20446,
+        "endDayEpoch": 20446,
+        "events": [
+          {
+            "dateEpochDay": 20446,
+            "startMinutes": 1200,
+            "endMinutes": 1260,
+            "title": "使得·",
+            "content": "文档"
+          }
+        ]
+      }
+    }
+  ]
+}

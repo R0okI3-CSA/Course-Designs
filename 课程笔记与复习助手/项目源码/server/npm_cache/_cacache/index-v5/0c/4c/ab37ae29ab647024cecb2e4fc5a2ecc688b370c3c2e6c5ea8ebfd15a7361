@@ -1,0 +1,2 @@
+
+9b072654adfb6d12dd79e0ef3e3f22744467a255	{"key":"make-fetch-happen:request-cache:https://registry.npm.taobao.org/object-assign","integrity":null,"time":1764338514502,"size":"262","metadata":{"time":1764338514502,"url":"https://registry.npm.taobao.org/object-assign","reqHeaders":{"accept":"application/json"},"resHeaders":{"content-type":"text/html","date":"Fri, 28 Nov 2025 14:01:54 GMT","location":"https://registry.npmmirror.com/object-assign"},"options":{"compress":true},"status":301}}

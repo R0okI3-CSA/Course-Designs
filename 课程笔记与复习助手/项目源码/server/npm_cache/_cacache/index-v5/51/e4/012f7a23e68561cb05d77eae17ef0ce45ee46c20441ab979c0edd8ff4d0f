@@ -1,0 +1,2 @@
+
+c06fbe81e3611a92706f27e744751a7f8df54bbf	{"key":"make-fetch-happen:request-cache:https://registry.npm.taobao.org/side-channel-list","integrity":null,"time":1764338522571,"size":"262","metadata":{"time":1764338522571,"url":"https://registry.npm.taobao.org/side-channel-list","reqHeaders":{"accept":"application/json"},"resHeaders":{"content-type":"text/html","date":"Fri, 28 Nov 2025 14:02:02 GMT","location":"https://registry.npmmirror.com/side-channel-list"},"options":{"compress":true},"status":301}}

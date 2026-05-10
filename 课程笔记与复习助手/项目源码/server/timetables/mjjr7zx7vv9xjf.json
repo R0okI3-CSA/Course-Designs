@@ -1,0 +1,107 @@
+{
+  "shareId": "mjjr7zx7vv9xjf",
+  "createdAt": 1766565054619,
+  "timetable": {
+    "planTitle": "计划1",
+    "cells": [
+      {
+        "rowIndex": 0,
+        "colIndex": 1,
+        "title": "工程伦理",
+        "location": "公教二",
+        "content": ""
+      },
+      {
+        "rowIndex": 0,
+        "colIndex": 2,
+        "title": "操作系统",
+        "location": "公教二",
+        "content": ""
+      },
+      {
+        "rowIndex": 1,
+        "colIndex": 1,
+        "title": "工程伦理",
+        "location": "公教二",
+        "content": ""
+      },
+      {
+        "rowIndex": 1,
+        "colIndex": 2,
+        "title": "操作系统",
+        "location": "公教二",
+        "content": ""
+      },
+      {
+        "rowIndex": 2,
+        "colIndex": 0,
+        "title": "python开发技术",
+        "location": "公教二",
+        "content": "编程"
+      },
+      {
+        "rowIndex": 2,
+        "colIndex": 1,
+        "title": "微机原理",
+        "location": "公教一",
+        "content": ""
+      },
+      {
+        "rowIndex": 3,
+        "colIndex": 0,
+        "title": "python开发技术",
+        "location": "公教二",
+        "content": "编程"
+      },
+      {
+        "rowIndex": 3,
+        "colIndex": 1,
+        "title": "微机原理",
+        "location": "公教一",
+        "content": ""
+      },
+      {
+        "rowIndex": 4,
+        "colIndex": 4,
+        "title": "数字图像",
+        "location": "公教四",
+        "content": ""
+      },
+      {
+        "rowIndex": 5,
+        "colIndex": 4,
+        "title": "数字图像",
+        "location": "公教四",
+        "content": ""
+      },
+      {
+        "rowIndex": 6,
+        "colIndex": 0,
+        "title": "安卓开发技术",
+        "location": "公教四",
+        "content": "安卓开发"
+      },
+      {
+        "rowIndex": 7,
+        "colIndex": 0,
+        "title": "安卓开发技术",
+        "location": "公教四",
+        "content": "安卓开发"
+      },
+      {
+        "rowIndex": 8,
+        "colIndex": 1,
+        "title": "微机实验",
+        "location": "工科二",
+        "content": ""
+      },
+      {
+        "rowIndex": 8,
+        "colIndex": 3,
+        "title": "操作系统实验",
+        "location": "工科二",
+        "content": "实验"
+      }
+    ]
+  }
+}

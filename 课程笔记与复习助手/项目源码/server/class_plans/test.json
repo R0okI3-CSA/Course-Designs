@@ -1,0 +1,30 @@
+{
+  "className": "test",
+  "plans": [
+    {
+      "id": "mjjxnyt8r2hkww",
+      "createdAt": 1766575877372,
+      "customSchedule": {
+        "planTitle": "multi",
+        "startDayEpoch": 20000,
+        "endDayEpoch": 20001,
+        "events": [
+          {
+            "startMinutes": 480,
+            "title": "e1",
+            "endMinutes": 540,
+            "content": "c1",
+            "dateEpochDay": 20000
+          },
+          {
+            "startMinutes": 600,
+            "title": "e2",
+            "endMinutes": 660,
+            "content": "c2",
+            "dateEpochDay": 20001
+          }
+        ]
+      }
+    }
+  ]
+}

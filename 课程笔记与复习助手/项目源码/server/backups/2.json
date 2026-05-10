@@ -1,0 +1,83 @@
+{
+  "userId": 2,
+  "timestamp": 1766578682335,
+  "payload": {
+    "notes": [
+      {
+        "id": 3,
+        "userId": 2,
+        "title": "笔记",
+        "content": "你好你好你好\n",
+        "richContentJson": "{\"segments\":[{\"type\":\"text\",\"text\":\"你好\",\"format\":{\"fontFamily\":\"Hei\",\"fontSizeSp\":16,\"colorArgb\":4278190080,\"bold\":false,\"italic\":false,\"underline\":false}},{\"type\":\"text\",\"text\":\"你好\",\"format\":{\"fontFamily\":\"Song\",\"fontSizeSp\":20,\"colorArgb\":4294198070,\"bold\":false,\"italic\":false,\"underline\":false}},{\"type\":\"text\",\"text\":\"你好\\n\",\"format\":{\"fontFamily\":\"Kai\",\"fontSizeSp\":24,\"colorArgb\":4280391411,\"bold\":false,\"italic\":false,\"underline\":false}},{\"type\":\"image\",\"uri\":\"file:\\/\\/\\/data\\/user\\/0\\/com.example.coursereviewplanner\\/files\\/note_img_1766576689783.jpg\"},{\"type\":\"audio\",\"uri\":\"file:\\/\\/\\/data\\/user\\/0\\/com.example.coursereviewplanner\\/files\\/note_audio_1766576758942.m4a\"}],\"pageStyle\":\"PLAIN\",\"doodles\":[]}",
+        "pageStyle": "PLAIN",
+        "createdAt": 1766576619611,
+        "updatedAt": 1766576763797
+      },
+      {
+        "id": 5,
+        "userId": 2,
+        "tagId": 1,
+        "title": "头",
+        "content": "",
+        "pageStyle": "LINES",
+        "createdAt": 1766576828326,
+        "updatedAt": 1766576828326
+      },
+      {
+        "id": 6,
+        "userId": 2,
+        "tagId": 1,
+        "title": "hhv",
+        "content": "",
+        "pageStyle": "LINES",
+        "createdAt": 1766576850224,
+        "updatedAt": 1766576850224
+      }
+    ],
+    "studyPlans": [
+      {
+        "id": 6,
+        "userId": 2,
+        "title": "计划1",
+        "createdAt": 1766576482038,
+        "updatedAt": 1766576482038
+      },
+      {
+        "id": 7,
+        "userId": 2,
+        "title": "计划2",
+        "createdAt": 1766576528671,
+        "updatedAt": 1766576528671
+      },
+      {
+        "id": 8,
+        "userId": 2,
+        "title": "[班级:计算机231] 1231",
+        "createdAt": 1766577011663,
+        "updatedAt": 1766577011663
+      }
+    ],
+    "reminders": [
+      {
+        "id": 4,
+        "userId": 2,
+        "title": "测试",
+        "content": "",
+        "targetTime": 1766576640000,
+        "isEnabled": true,
+        "createdAt": 1766576600149,
+        "updatedAt": 1766576602069
+      },
+      {
+        "id": 5,
+        "userId": 2,
+        "title": "bhv",
+        "content": "fhh",
+        "targetTime": 1766576940000,
+        "isEnabled": true,
+        "createdAt": 1766576899062,
+        "updatedAt": 1766576900265
+      }
+    ]
+  }
+}
